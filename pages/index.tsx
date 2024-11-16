@@ -1,4 +1,6 @@
 // pages/index.js
+import AWS from "@/assets/aws.webp";
+import Logo from "@/assets/logo.jpeg";
 import Image from "next/image";
 import { useState } from "react";
 import {
@@ -8,6 +10,7 @@ import {
   FaCloud,
   FaEnvelope,
   FaFacebook,
+  FaInstagram,
   FaLinkedin,
   FaMapMarkerAlt,
   FaPhone,
@@ -19,24 +22,48 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+interface SocialLinkProps {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+}
+
+interface WhyChooseCardProps {
+  title: string;
+  icon: React.ReactNode;
+  description: string;
+}
+
+interface contactingCardProps {
+  title: string;
+  icon: React.ReactNode;
+  content: string;
+}
+
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const testimonials = [
     {
-      name: "Marie Laurent",
-      role: "CTO, TechCorp",
+      name: "Issa Diop",
+      role: "CTO, Fsocity",
       content:
         "ConnectToCloud nous a permis de réaliser notre transformation numérique en temps record.",
     },
     {
-      name: "Thomas Dubois",
+      name: "Balla Sock",
       role: "Étudiant en Informatique",
       content:
         "Grâce à leur programme, j'ai obtenu ma certification AWS du premier coup !",
     },
     {
-      name: "Sophie Martin",
+      name: "Soxna Ngone Niang",
       role: "Directrice SI",
       content:
         "Un accompagnement professionnel et personnalisé qui a dépassé nos attentes.",
@@ -55,11 +82,11 @@ export default function Home() {
       {/* Hero Section (inchangé) */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-24 px-8 text-center">
         <Image
-          src="/api/placeholder/120/120"
+          src={Logo}
           alt="ConnectToCloud Logo"
-          className="w-32 h-32 mx-auto mb-8 bg-white rounded-full p-4"
-          width={100}
-          height={100}
+          className="w-52 h-52 mx-auto mb-8 bg-white rounded-full p-4"
+          width={500}
+          height={500}
         />
         <h1 className="text-5xl font-bold mb-6">ConnectToCloud</h1>
         <p className="text-xl max-w-3xl mx-auto">
@@ -174,11 +201,11 @@ export default function Home() {
           Certification AWS Cloud Practitioner
         </h2>
         <Image
-          src="/api/placeholder/200/200"
+          src={AWS}
           alt="AWS Certification Logo"
-          className="w-48 h-48 mx-auto my-8"
-          width={100}
-          height={100}
+          className="w-99 h-99 mx-auto my-8"
+          width={700}
+          height={700}
         />
         <p className="text-xl max-w-2xl mx-auto">
           Obtenez la certification AWS Cloud Practitioner avec notre programme
@@ -194,17 +221,17 @@ export default function Home() {
             <ContactInfo
               icon={<FaEnvelope className="w-6 h-6" />}
               title="Email"
-              content="contact@connecttocloud.fr"
+              content="connectocloud22@gmail.com"
             />
             <ContactInfo
               icon={<FaPhone className="w-6 h-6" />}
               title="Téléphone"
-              content="+33 1 23 45 67 89"
+              content="+221 78 505 86 46"
             />
             <ContactInfo
               icon={<FaMapMarkerAlt className="w-6 h-6" />}
               title="Adresse"
-              content="123 Avenue du Cloud, 75000 Paris"
+              content="000 Avenue du Cloud, Dakar, Senegal"
             />
           </div>
           <ContactForm />
@@ -227,22 +254,27 @@ export default function Home() {
         </a>
         <div className="flex justify-center gap-6 mt-8">
           <SocialLink
-            href="#"
+            href="https://www.facebook.com/profile.php?id=61566385864153"
             icon={<FaFacebook className="w-6 h-6" />}
             label="Facebook"
           />
           <SocialLink
-            href="#"
+            href="https://www.instagram.com/connectocloud/"
+            icon={<FaInstagram className="w-6 h-6" />}
+            label="Facebook"
+          />
+          <SocialLink
+            href="https://x.com/ConnectToCloud0"
             icon={<FaTwitter className="w-6 h-6" />}
             label="Twitter"
           />
           <SocialLink
-            href="#"
+            href="https://www.linkedin.com/company/connecttocloud/"
             icon={<FaLinkedin className="w-6 h-6" />}
             label="LinkedIn"
           />
           <SocialLink
-            href="#"
+            href="https://www.youtube.com/@ConnectToCloud/"
             icon={<FaYoutube className="w-6 h-6" />}
             label="YouTube"
           />
@@ -258,7 +290,11 @@ export default function Home() {
 }
 
 // Components existants
-const FeatureCard = ({ icon, title, description }) => (
+const FeatureCard: React.FC<FeatureCardProps> = ({
+  icon,
+  title,
+  description,
+}) => (
   <div className="bg-white p-8 rounded-xl shadow-lg hover:-translate-y-2 transition-transform">
     <div className="text-blue-600 mb-4">{icon}</div>
     <h3 className="text-xl font-bold mb-4">{title}</h3>
@@ -266,7 +302,7 @@ const FeatureCard = ({ icon, title, description }) => (
   </div>
 );
 
-const SocialLink = ({ href, icon, label }) => (
+const SocialLink: React.FC<SocialLinkProps> = ({ href, icon, label }) => (
   <a
     href={href}
     aria-label={label}
@@ -277,7 +313,11 @@ const SocialLink = ({ href, icon, label }) => (
 );
 
 // Nouveaux composants
-const WhyChooseCard = ({ icon, title, description }) => (
+const WhyChooseCard: React.FC<WhyChooseCardProps> = ({
+  icon,
+  title,
+  description,
+}) => (
   <div className="text-center p-6">
     <div className="text-blue-600 mb-4 flex justify-center">{icon}</div>
     <h3 className="font-bold mb-2">{title}</h3>
@@ -285,7 +325,11 @@ const WhyChooseCard = ({ icon, title, description }) => (
   </div>
 );
 
-const ContactInfo = ({ icon, title, content }) => (
+const ContactInfo: React.FC<contactingCardProps> = ({
+  icon,
+  title,
+  content,
+}) => (
   <div className="flex items-center space-x-4">
     <div className="text-blue-600">{icon}</div>
     <div>
@@ -309,7 +353,7 @@ const ContactForm = () => (
     />
     <textarea
       placeholder="Message"
-      rows="4"
+      rows={4}
       className="w-full p-3 rounded-lg border border-gray-300"
     ></textarea>
     <button
