@@ -82,6 +82,7 @@ export default function Home() {
       {/* Hero Section (inchangé) */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-24 px-8 text-center">
         <Image
+          style={{ backgroundSize: "cover", backgroundPosition: "center" }}
           src={Logo}
           alt="ConnectToCloud Logo"
           className="w-52 h-52 mx-auto mb-8 bg-white rounded-full p-4"
@@ -203,9 +204,10 @@ export default function Home() {
         <Image
           src={AWS}
           alt="AWS Certification Logo"
-          className="w-99 h-99 mx-auto my-8"
-          width={700}
+          className="w-109 h-109 mx-auto my-8"
+          width={800}
           height={700}
+          style={{ borderRadius: "12px" }}
         />
         <p className="text-xl max-w-2xl mx-auto">
           Obtenez la certification AWS Cloud Practitioner avec notre programme
