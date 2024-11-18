@@ -190,15 +190,15 @@ export default function Home() {
           `}</style>
         </div>
         <div className="flex justify-center items-center mt-24">
-          <blockquote className="text-3xl max-w-4xl text-center relative">
-            <span className="absolute -left-8 top-0 text-6xl text-gray-300">
+          <blockquote className="text-lg sm:text-2xl md:text-3xl max-w-[90%] sm:max-w-2xl md:max-w-3xl lg:max-w-5xl mx-auto text-center relative px-6 sm:px-12">
+            <span className="absolute -left-3 sm:-left-6 md:-left-8 top-0 text-3xl sm:text-5xl md:text-6xl text-gray-300 opacity-75">
               &quot;&quot;
             </span>
             <p className="italic">
               Démocratisons ensemble l&apos;accès au cloud computing. Votre
               partenaire de confiance pour la transformation numérique.
             </p>
-            <span className="absolute -bottom-8 right-0 text-6xl text-gray-300">
+            <span className="absolute -bottom-3 sm:-bottom-6 md:-bottom-8 right-3 sm:right-6 md:right-8 text-3xl sm:text-5xl md:text-6xl text-gray-300 opacity-75">
               &quot;&quot;
             </span>
           </blockquote>
