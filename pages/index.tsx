@@ -137,37 +137,37 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section (inchangé) */}
-      <div className="relative min-h-screen bg-blue-600 ">
+      <div className="relative min-h-screen bg-blue-600">
         {/* Animated grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] [transform-origin:0_0] animate-[grid_20s_linear_infinite]" />
 
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xs:pt-32 ">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center min-h-screen py-12 lg:py-0">
               {/* Left Column - Text Content */}
-              <div className="space-y-8 text-center lg:text-left">
-                <h1 className="text-4xl md:text-6xl font-extrabold text-white">
+              <div className="space-y-6 md:space-y-8 text-center lg:text-left mt-16 lg:mt-0">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
                     {titre}
                   </span>
                 </h1>
 
-                <p className="text-xl text-gray-100 max-w-2xl">
+                <p className="text-lg sm:text-xl text-gray-100 max-w-2xl mx-auto lg:mx-0">
                   Transformez votre entreprise avec des solutions cloud
                   innovantes et sécurisées.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <button className="px-8 py-4 bg-white text-blue-600 rounded-full font-semibold transform transition hover:scale-105 hover:shadow-xl">
+                  <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 rounded-full font-semibold transform transition hover:scale-105 hover:shadow-xl">
                     Démarrer maintenant
                   </button>
-                  <button className="px-8 py-4 border-2 border-white/20 rounded-full text-white font-semibold backdrop-blur-sm transform transition hover:scale-105 hover:shadow-xl hover:bg-white/10">
+                  <button className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/20 rounded-full text-white font-semibold backdrop-blur-sm transform transition hover:scale-105 hover:shadow-xl hover:bg-white/10">
                     En savoir plus
                   </button>
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 pt-8">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-6 sm:pt-8">
                   {[
                     { value: "99.9%", label: "Disponibilité" },
                     { value: "24/7", label: "Support" },
@@ -175,19 +175,21 @@ export default function Home() {
                   ].map((stat, index) => (
                     <div
                       key={index}
-                      className="text-center p-4 rounded-xl bg-white/5 backdrop-blur-sm"
+                      className="text-center p-2 sm:p-4 rounded-xl bg-white/5 backdrop-blur-sm"
                     >
-                      <div className="text-2xl font-bold text-white">
+                      <div className="text-lg sm:text-2xl font-bold text-white">
                         {stat.value}
                       </div>
-                      <div className="text-sm text-gray-200">{stat.label}</div>
+                      <div className="text-xs sm:text-sm text-gray-200">
+                        {stat.label}
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Right Column - Logo & Visual Elements */}
-              <div className="relative">
+              <div className="relative order-first lg:order-last">
                 <div className="relative z-10 transform transition-all duration-500 hover:scale-105">
                   <div className="absolute inset-0 bg-white rounded-full blur-3xl opacity-30 animate-pulse" />
                   <Image
@@ -195,7 +197,7 @@ export default function Home() {
                     alt="ConnectToCloud Logo"
                     width={500}
                     height={500}
-                    className="relative mx-auto rounded-xl"
+                    className="relative mx-auto rounded-xl w-full max-w-md"
                     priority
                   />
                 </div>
