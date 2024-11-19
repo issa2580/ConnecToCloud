@@ -135,7 +135,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section (inchangé) */}
       <div className="relative min-h-screen bg-blue-600">
         {/* Animated grid background */}
