@@ -137,7 +137,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section (inchangé) */}
-      <div className="relative min-h-screen bg-blue-600 sm:py-16 ">
+      <div className="relative min-h-screen bg-blue-600 sm:pt-32 ">
         {/* Animated grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] [transform-origin:0_0] animate-[grid_20s_linear_infinite]" />
 
