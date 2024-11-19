@@ -137,12 +137,12 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section (inchangé) */}
-      <div className="relative min-h-screen bg-blue-600 sm:pt-32 ">
+      <div className="relative min-h-screen bg-blue-600 ">
         {/* Animated grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] [transform-origin:0_0] animate-[grid_20s_linear_infinite]" />
 
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xs:pt-32 ">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="space-y-8 text-center lg:text-left">
