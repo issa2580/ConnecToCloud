@@ -105,11 +105,6 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const titre = "ConnectToCloud";
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const testimonials = [
     {
@@ -142,68 +137,79 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero Section (inchangé) */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-24 px-8 text-center">
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-10 md:mb-16 lg:mb-20">
-          <div className="flex flex-wrap justify-center overflow-hidden px-4">
-            {titre.split("").map((lettre, index) => (
-              <span
-                key={index}
-                className="inline-block transform transition-all duration-1000 hover:text-blue-600"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible
-                    ? "translateY(0px)"
-                    : "translateY(-20px)",
-                  transitionDelay: `${index * 50}ms`,
-                }}
-              >
-                {lettre}
-              </span>
-            ))}
+      <div className="relative min-h-screen bg-blue-600">
+        {/* Animated grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] [transform-origin:0_0] animate-[grid_20s_linear_infinite]" />
+
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Text Content */}
+              <div className="space-y-8 text-center lg:text-left">
+                <h1 className="text-4xl md:text-6xl font-extrabold text-white">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+                    {titre}
+                  </span>
+                </h1>
+
+                <p className="text-xl text-gray-100 max-w-2xl">
+                  Transformez votre entreprise avec des solutions cloud
+                  innovantes et sécurisées.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <button className="px-8 py-4 bg-white text-blue-600 rounded-full font-semibold transform transition hover:scale-105 hover:shadow-xl">
+                    Démarrer maintenant
+                  </button>
+                  <button className="px-8 py-4 border-2 border-white/20 rounded-full text-white font-semibold backdrop-blur-sm transform transition hover:scale-105 hover:shadow-xl hover:bg-white/10">
+                    En savoir plus
+                  </button>
+                </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-4 pt-8">
+                  {[
+                    { value: "99.9%", label: "Disponibilité" },
+                    { value: "24/7", label: "Support" },
+                    { value: "+1000", label: "Clients" },
+                  ].map((stat, index) => (
+                    <div
+                      key={index}
+                      className="text-center p-4 rounded-xl bg-white/5 backdrop-blur-sm"
+                    >
+                      <div className="text-2xl font-bold text-white">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-gray-200">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Column - Logo & Visual Elements */}
+              <div className="relative">
+                <div className="relative z-10 transform transition-all duration-500 hover:scale-105">
+                  <div className="absolute inset-0 bg-white rounded-full blur-3xl opacity-30 animate-pulse" />
+                  <Image
+                    src={Logo}
+                    alt="ConnectToCloud Logo"
+                    width={500}
+                    height={500}
+                    className="relative mx-auto rounded-xl"
+                    priority
+                  />
+                </div>
+
+                {/* Decorative elements */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] rotate-45 opacity-30">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-blue-300/20 blur-3xl" />
+                  <div className="absolute inset-0 bg-gradient-conic from-white/30 via-transparent to-blue-300/30 animate-spin-slow" />
+                </div>
+              </div>
+            </div>
           </div>
-        </h1>
-        <div className="relative">
-          <Image
-            src={Logo}
-            alt="ConnectToCloud Logo"
-            className="mx-auto mb-8 bg-white rounded-full p-4"
-            width={500}
-            height={500}
-            style={{
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              animation: "floatHorizontal 3s ease-in-out infinite",
-            }}
-          />
-          <style jsx>{`
-            @keyframes floatHorizontal {
-              0% {
-                transform: translateX(0px);
-              }
-              50% {
-                transform: translateX(20px);
-              }
-              100% {
-                transform: translateX(0px);
-              }
-            }
-          `}</style>
         </div>
-        <div className="flex justify-center items-center mt-24">
-          <blockquote className="text-lg sm:text-2xl md:text-3xl max-w-[90%] sm:max-w-2xl md:max-w-3xl lg:max-w-5xl mx-auto text-center relative px-6 sm:px-12">
-            <span className="absolute -left-3 sm:-left-6 md:-left-8 top-0 text-3xl sm:text-5xl md:text-6xl text-gray-300 opacity-75">
-              &quot;&quot;
-            </span>
-            <p className="italic">
-              Démocratisons ensemble l&apos;accès au cloud computing. Votre
-              partenaire de confiance pour la transformation numérique.
-            </p>
-            <span className="absolute -bottom-3 sm:-bottom-6 md:-bottom-8 right-3 sm:right-6 md:right-8 text-3xl sm:text-5xl md:text-6xl text-gray-300 opacity-75">
-              &quot;&quot;
-            </span>
-          </blockquote>
-        </div>
-      </section>
+      </div>
 
       {/* Stats Section */}
       <AnimatedSection direction="right">
