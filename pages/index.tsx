@@ -14,6 +14,7 @@ import {
   FaInstagram,
   FaLinkedin,
   FaMapMarkerAlt,
+  FaNewspaper,
   FaPhone,
   FaPodcast,
   FaTiktok,
@@ -104,6 +105,8 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("");
   const titre = "ConnectToCloud";
 
   const testimonials = [
@@ -133,6 +136,12 @@ export default function Home() {
     { number: "50+", label: "Experts Cloud" },
     { number: "1000+", label: "Certifications Obtenues" },
   ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("success");
+    setEmail("");
+  };
 
   return (
     <main className="min-h-screen overflow-x-hidden">
@@ -339,6 +348,65 @@ export default function Home() {
             Obtenez la certification AWS Cloud Practitioner avec notre programme
             d&apos;accompagnement sur mesure.
           </p>
+        </section>
+      </AnimatedSection>
+
+      <AnimatedSection direction="up">
+        <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-16 px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <FaNewspaper className="w-12 h-12 text-white opacity-80" />
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Restez à jour avec ConnectToCloud
+            </h2>
+
+            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+              Abonnez-vous à notre newsletter pour recevoir les dernières
+              actualités du Cloud, des conseils d&apos;experts et des astuces
+              exclusives pour optimiser vos projets.
+            </p>
+
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Votre adresse email"
+                  className="flex-1 px-6 py-3 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300"
+                >
+                  S&apos;abonner
+                </button>
+              </div>
+              {status === "success" && (
+                <p className="mt-4 text-green-300">
+                  Merci de votre inscription ! 🎉
+                </p>
+              )}
+            </form>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-white/80">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-white rounded-full" />
+                <span>Tips & Astuces Cloud</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-white rounded-full" />
+                <span>Dernières Nouveautés</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-white rounded-full" />
+                <span>Guides Pratiques</span>
+              </div>
+            </div>
+          </div>
         </section>
       </AnimatedSection>
 
