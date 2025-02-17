@@ -29,7 +29,7 @@ pipeline {
         steps {
           script {
             nodejs(nodeJSInstallationName: 'nodejs') {
-              withSonarQubeEnv('sonar') {
+              withSonarQubeEnv('sonarqube') {
                 sh '''
                 yarn add sonar-scanner
                 yarn sonar
