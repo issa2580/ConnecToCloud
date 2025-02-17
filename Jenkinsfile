@@ -12,6 +12,7 @@ pipeline {
           script {
             nodejs(nodeJSInstallationName: 'nodejs'){
               sh '''
+              npm install -g yarn
               yarn install
               yarn build
               yarn test
