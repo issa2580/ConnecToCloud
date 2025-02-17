@@ -9,7 +9,7 @@ pipeline {
       }
       stage('Build and test'){
         steps {
-          scripts {
+          script {
             nodejs(nodeJSInstallationName: 'nodejs'){
               sh '''
               npm run build
