@@ -25,16 +25,16 @@ pipeline {
             dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
         }
       }
-    }
-    stage('Sonarqube analisys') {
-      steps {
-        script {
-          nodejs(nodeJSInstallationName: 'nodejs') {
-            withSonarQubeEnv('sonar') {
-              sh '''
-              yarn add sonar-scanner
-              yarn sonar
-              '''
+      stage('Sonarqube analisys') {
+        steps {
+          script {
+            nodejs(nodeJSInstallationName: 'nodejs') {
+              withSonarQubeEnv('sonar') {
+                sh '''
+                yarn add sonar-scanner
+                yarn sonar
+                '''
+              }
             }
           }
         }
