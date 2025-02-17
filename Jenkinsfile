@@ -26,4 +26,18 @@ pipeline {
         }
       }
     }
+    stage('Sonarqube analisys') {
+      steps {
+        script {
+          nodejs(nodeJSInstallationName: 'nodejs') {
+            withSonarQubeEnv('sonar') {
+              sh '''
+              yarn add sonar-scanner
+              yarn sonar
+              '''
+            }
+          }
+        }
+      }
+    }
 }
