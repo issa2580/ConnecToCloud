@@ -12,6 +12,7 @@ pipeline {
           script {
             nodejs(nodeJSInstallationName: 'nodejs'){
               sh '''
+              npm install
               npm run build
               npm run test
               '''
