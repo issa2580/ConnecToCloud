@@ -26,7 +26,7 @@ pipeline {
       }
       stage('OWASP FS SCAN') {
         steps {
-            dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit --noupdate', odcInstallation: 'DP-Check'
+            dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
             dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
         }
       }
@@ -45,18 +45,18 @@ pipeline {
       //   }
       // }
 
-      stage("Build and Push docker image"){
-        steps {
-          script {
-            withDockerRegistry(credentialsId: 'docker-hub') {
-            sh '''
-              docker --version
-              docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
-              docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-            '''
-            }
-          }
-        }
-      }
+      // stage("Build and Push docker image"){
+      //   steps {
+      //     script {
+      //       withDockerRegistry(credentialsId: 'docker-hub') {
+      //       sh '''
+      //         docker --version
+      //         docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
+      //         docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+      //       '''
+      //       }
+      //     }
+      //   }
+      // }
     }
 }
