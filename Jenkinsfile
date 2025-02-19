@@ -48,7 +48,7 @@ pipeline {
       stage("Build and Push docker image"){
         steps {
           script {
-            withDockerRegistry(credentialsId: 'docker-hub', toolName: 'docker) {
+            withDockerRegistry(credentialsId: 'docker-hub', toolName: 'docker') {
             sh '''
               docker build -t ${DOCKER_IMAGE}: ${DOCKER_TAG} -f Dockerfile .
               docker push ${DOCKER_IMAGE}: ${DOCKER_TAG}
