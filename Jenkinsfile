@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_IMAGE: "martinez42/connectocloud"
-    DOCKER_TAG: "latest"
+    DOCKER_IMAGE = 'martinez42/connectocloud'
+    DOCKER_TAG = 'latest'
   }
 
     stages {
