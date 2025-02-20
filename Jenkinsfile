@@ -27,27 +27,27 @@ pipeline {
         }
       }
 
-      stage('OWASP FS SCAN') {
-        steps {
-            dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-            dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-        }
-      }
-
-      // stage('Sonarqube analisys') {
+      // stage('OWASP FS SCAN') {
       //   steps {
-      //     script {
-      //       nodejs(nodeJSInstallationName: 'nodejs') {
-      //         withSonarQubeEnv('sonar') {
-      //           sh '''
-      //           yarn add sonar-scanner
-      //           yarn sonar
-      //           '''
-      //         }
-      //       }
-      //     }
+      //       dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+      //       dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
       //   }
       // }
+
+      stage('Sonarqube analisys') {
+        steps {
+          script {
+            nodejs(nodeJSInstallationName: 'nodejs') {
+              withSonarQubeEnv('sonar') {
+                sh '''
+                yarn add sonar-scanner
+                yarn sonar
+                '''
+              }
+            }
+          }
+        }
+      }
 
       // stage("Build and Push docker image"){
       //   steps {
