@@ -40,6 +40,7 @@ pipeline {
             nodejs(nodeJSInstallationName: 'nodejs') {
               withSonarQubeEnv('sonar') {
                 sh '''
+                npm install -g yarn
                 yarn add sonar-scanner
                 yarn sonar
                 '''
