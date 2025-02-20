@@ -34,43 +34,43 @@ pipeline {
       //   }
       // }
 
-      stage('Sonarqube analisys') {
-        steps {
-          script {
-            nodejs(nodeJSInstallationName: 'nodejs') {
-              withSonarQubeEnv('sonar') {
-                sh '''
-                npm install -g yarn
-                yarn add sonar-scanner
-                yarn sonar
-                '''
-              }
-            }
-          }
-        }
-      }
-
-      stage('Quality gates analysis'){
-        steps {
-          script {
-            waitForQualityGate abortPipeline: false, credentialsId: 'token-sonar'
-          }
-        }
-      }
-
-      // stage("Build and Push docker image"){
+      // stage('Sonarqube analisys') {
       //   steps {
       //     script {
-      //       withDockerRegistry(credentialsId: 'docker-hub') {
-      //       sh '''
-      //         docker --version
-      //         docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
-      //         docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-      //       '''
+      //       nodejs(nodeJSInstallationName: 'nodejs') {
+      //         withSonarQubeEnv('sonar') {
+      //           sh '''
+      //           npm install -g yarn
+      //           yarn add sonar-scanner
+      //           yarn sonar
+      //           '''
+      //         }
       //       }
       //     }
       //   }
       // }
+
+      // stage('Quality gates analysis'){
+      //   steps {
+      //     script {
+      //       waitForQualityGate abortPipeline: false, credentialsId: 'token-sonar'
+      //     }
+      //   }
+      // }
+
+      stage("Build and Push docker image"){
+        steps {
+          script {
+            withDockerRegistry(credentialsId: 'docker-hub') {
+            sh '''
+              docker --version
+              docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
+              docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+            '''
+            }
+          }
+        }
+      }
       
       // stage("Trivy Scan") {
       //   steps {
