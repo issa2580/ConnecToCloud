@@ -14,25 +14,25 @@ pipeline {
         }
       }
 
-      stage('Install dependancies'){
-        steps {
-          script {
-            nodejs(nodeJSInstallationName: 'nodejs'){
-              sh '''
-              npm install -g yarn
-              yarn install
-              '''
-            }
-          }
-        }
-      }
+      // stage('Install dependancies'){
+      //   steps {
+      //     script {
+      //       nodejs(nodeJSInstallationName: 'nodejs'){
+      //         sh '''
+      //         npm install -g yarn
+      //         yarn install
+      //         '''
+      //       }
+      //     }
+      //   }
+      // }
 
-      stage('Dependancies Check') {
-        steps {
-            dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit --format HTML', odcInstallation: 'DP-Check'
-            dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-        }
-      }
+      // stage('Dependancies Check') {
+      //   steps {
+      //       dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit --format HTML', odcInstallation: 'DP-Check'
+      //       dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+      //   }
+      // }
 
       // stage('Sonarqube analisys') {
       //   steps {
@@ -58,19 +58,19 @@ pipeline {
       //   }
       // }
 
-      // stage("Build and Push docker image"){
-      //   steps {
-      //     script {
-      //       withDockerRegistry(credentialsId: 'docker-hub') {
-      //       sh '''
-      //         docker --version
-      //         docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
-      //         docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-      //       '''
-      //       }
-      //     }
-      //   }
-      // }
+      stage("Build and Push docker image"){
+        steps {
+          script {
+            withDockerRegistry(credentialsId: 'docker-hub') {
+            sh '''
+              docker --version
+              docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
+              docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+            '''
+            }
+          }
+        }
+      }
       
       // stage("Trivy Scan") {
       //   steps {
