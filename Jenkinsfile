@@ -14,18 +14,18 @@ pipeline {
         }
       }
 
-      // stage('Build and test'){
-      //   steps {
-      //     script {
-      //       nodejs(nodeJSInstallationName: 'nodejs'){
-      //         sh '''
-      //         npm install -g yarn
-      //         yarn install
-      //         '''
-      //       }
-      //     }
-      //   }
-      // }
+      stage('Install dependancies'){
+        steps {
+          script {
+            nodejs(nodeJSInstallationName: 'nodejs'){
+              sh '''
+              npm install -g yarn
+              yarn install
+              '''
+            }
+          }
+        }
+      }
 
       // stage('OWASP FS SCAN') {
       //   steps {
