@@ -58,29 +58,29 @@ pipeline {
       //   }
       // }
 
-      stage("Build and Push docker image"){
-        steps {
-          script {
-            withDockerRegistry(credentialsId: 'docker-hub') {
-            sh '''
-              docker --version
-              docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
-              docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-            '''
-            }
-          }
-        }
-      }
-      
-      // stage("Trivy Scan") {
+      // stage("Build and Push docker image"){
       //   steps {
-      //     // script {
-      //     //   sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image martinez42/connectocloud:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table > trivy_scan_result.txt 2>&1')
-      //     // }
       //     script {
-      //         sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock -v $PWD/trivy-tmp:/tmp aquasec/trivy image martinez42/connectocloud:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table > trivy_scan_result.txt 2>&1 || true'
+      //       withDockerRegistry(credentialsId: 'docker-hub') {
+      //       sh '''
+      //         docker --version
+      //         docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
+      //         docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+      //       '''
+      //       }
       //     }
       //   }
       // }
+      
+      stage("Trivy Scan") {
+        steps {
+          // script {
+          //   sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image martinez42/connectocloud:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table > trivy_scan_result.txt 2>&1')
+          // }
+          script {
+              sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock -v $PWD/trivy-tmp:/tmp aquasec/trivy image martinez42/connectocloud:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table > trivy_scan_result.txt 2>&1 || true'
+          }
+        }
+      }
     }
 }
