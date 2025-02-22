@@ -19,5 +19,12 @@ pipeline {
             }
           }
         }
+
+        stage('Dependancies Check') {
+          steps {
+              dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit --format HTML', odcInstallation: 'DP-Check'
+              dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+          }
+        }
     }
 }
