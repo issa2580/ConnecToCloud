@@ -7,6 +7,23 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/issa2580/ConnecToCloud.git']])
             }
         }
+
+        stage('Sonarqube analisys') {
+          steps {
+            script {
+              nodejs(nodeJSInstallationName: 'nodejs') {
+                withSonarQubeEnv('sonar') {
+                  sh '''
+                  npm install -g yarn
+                  yarn add sonar-scanner
+                  yarn sonar
+                  '''
+                }
+              }
+            }
+          }
+        }
+
         stage('Installation Dependancies') {
           steps {
             script {
@@ -20,11 +37,11 @@ pipeline {
           }
         }
 
-        stage('Dependancies Check') {
-          steps {
-              dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit --format HTML', odcInstallation: 'DP-Check'
-              dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-          }
-        }
+        // stage('Dependancies Check') {
+        //   steps {
+        //       dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit --format HTML', odcInstallation: 'DP-Check'
+        //       dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        //   }
+        // }
     }
 }
