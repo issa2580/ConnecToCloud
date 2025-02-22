@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+    DOCKER_IMAGE = 'martinez42/connectocloud'
+    DOCKER_TAG = 'latest'
+  }
+
     stages {
         stage('Hello') {
             steps {
@@ -36,6 +41,20 @@ pipeline {
             }
           }
         }
+
+        stage("Build and Push docker image"){
+        steps {
+          script {
+            withDockerRegistry(credentialsId: 'docker-hub') {
+            sh '''
+              docker --version
+              docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
+              docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+            '''
+            }
+          }
+        }
+      }
 
         // stage('Dependancies Check') {
         //   steps {
